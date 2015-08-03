@@ -2,10 +2,12 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema,
     bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
+
   var userSchema = Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true}
   })
+
   var User = mongoose.model("User", userSchema);
   userSchema.pre('save', function(next) {
     var user = this;
@@ -23,5 +25,13 @@ var mongoose = require('mongoose'),
         });
     });
 });
+
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+  console.log("candidatePassword")
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
 
 module.exports = User;

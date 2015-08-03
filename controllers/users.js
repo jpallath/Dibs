@@ -7,9 +7,8 @@ router.use(function (req, res, next) {
   next();
 });
 
-//Index (Maybe Log-In?)
+//Index (Maybe Log-In?), this is just an indevelopment page to make sure users are saving
 router.get('/', function(req, res){
-  console.log("hi")
   User.find({}, function(err, usersArray){
     if (err) {
       console.log("CAN'T FIND USERS");
@@ -20,21 +19,22 @@ router.get('/', function(req, res){
 });
 router.get('/login', function(req, res){
   res.render('users/login');
+  console.log("before loggin in")
 })
 router.post('/login', function(req, res){
-  var attempt = req.body.user;
-  User.findOne({username: attempt.username}, function(err, found){
-    if (found && found.password === attempt.password){
+  // var attempt = req.body.user;
+  // User.findOne({username: attempt.username}, function(err, found){
+  //   if (found && found.password === attempt.password){
       console.log("here");
-      req.session.currentUser = found.username;
-      req.session.currentId = found._id;
-      console.log(req.session);
-      res.redirect(301, "/articles")
-    } else {
-      console.log("null")
-      res.redirect(301, "/users/login")
-    }
-  })
+      // req.session.currentUser = found.username;
+      // req.session.currentId = found._id;
+      // console.log(req.session);
+      res.redirect(301, '/users');
+    // } else {
+    //   console.log("null")
+    //   res.redirect(301, "/users/login")
+    // }
+  // })
 })
 //New
 router.get('/new', function(req,res){
