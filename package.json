@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/jpallath/Dibs/issues"
   },
-  "homepage": "https://github.com/jpallath/Dibs#readme"
+  "homepage": "https://github.com/jpallath/Dibs#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "ejs": "^2.3.3",
+    "express": "^4.13.3",
+    "express-ejs-layouts": "^1.1.0",
+    "express-session": "^1.11.3",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.1.0",
+    "morgan": "^1.6.1"
+  }
 }
