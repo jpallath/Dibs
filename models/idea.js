@@ -5,9 +5,10 @@ var ideaSchema = Schema({
     title: {type: String, required: true},
     author: String,
     content: String,
-    tags: String,
+    tags: [String],
     image: String,
-    edited: {type: Date, default: Date.now}
+    passdown: {type: String, default: "idea"}
+    created: {type: Date, default: Date.now}
 })
 
 var Idea = mongoose.model("Idea", ideaSchema);

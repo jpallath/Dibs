@@ -7,9 +7,12 @@ var commentSchema = Schema({
     content: String,
     category: String,
     image: String,
+    parent_id: String,
+    parent_type: String,
+    passdown: {type:String, default: "comment"},
     edited: {type: Date, default: Date.now}
 })
 
-var Idea = mongoose.model("Idea", ideaSchema);
+var Idea = mongoose.model("comment", commentSchema);
 
-module.exports = Idea;
+module.exports = Comment;
