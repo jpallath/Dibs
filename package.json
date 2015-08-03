@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jpallath/Dibs#readme",
   "dependencies": {
+    "bcrypt": "^0.8.4",
     "body-parser": "^1.13.3",
     "ejs": "^2.3.3",
     "express": "^4.13.3",

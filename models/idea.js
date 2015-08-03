@@ -5,7 +5,7 @@ var ideaSchema = Schema({
     title: {type: String, required: true},
     author: String,
     content: String,
-    category: String,
+    tags: String,
     image: String,
     edited: {type: Date, default: Date.now}
 })
