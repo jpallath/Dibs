@@ -1,6 +1,8 @@
 var express = require ('express'),
     router  = express.Router(),
     User    = require('../models/user.js');
+    bcrypt = require('bcrypt'),
+    SALT_WORK_FACTOR = 10;
 
 router.use(function (req, res, next) {
   res.locals.controller = 'users';
@@ -13,29 +15,41 @@ router.get('/', function(req, res){
     if (err) {
       console.log("CAN'T FIND USERS");
     } else {
-      res.render('users/index',{user: usersArray});
+      res.render('users',{user: usersArray});
     };
   });
 });
+
+//Log-In
 router.get('/login', function(req, res){
   res.render('users/login');
-  console.log("before loggin in")
 })
 router.post('/login', function(req, res){
-  // var attempt = req.body.user;
-  // User.findOne({username: attempt.username}, function(err, found){
-  //   if (found && found.password === attempt.password){
-      console.log("here");
-      // req.session.currentUser = found.username;
+  attempt = req.body.user;
+  console.log(attempt);
+  User.findOne({username: attempt.username}, function(err, found){
+    if (found && found.password == attempt.password){
+      console.log("true")
+      res.redirect(301, "/users")
+    }
+    else {
+      res.redirect(301, "/users/login")
+    }
+
+  })
+})
+  // console.log(res.body.user);
+      // req.session.currentUser = User.username;
+      // console.log(User.schema.paths.username)
+      // console.log(req.session.currentUser)
       // req.session.currentId = found._id;
       // console.log(req.session);
-      res.redirect(301, '/users');
+      // res.redirect(301, '/users');
     // } else {
     //   console.log("null")
     //   res.redirect(301, "/users/login")
     // }
   // })
-})
 //New
 router.get('/new', function(req,res){
   console.log("users")
