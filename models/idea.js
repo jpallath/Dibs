@@ -7,7 +7,7 @@ var ideaSchema = Schema({
     content: String,
     tags: [String],
     image: String,
-    passdown: {type: String, default: "idea"}
+    passdown: {type: String, default: "idea"},
     created: {type: Date, default: Date.now}
 })
 

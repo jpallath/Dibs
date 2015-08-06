@@ -1,0 +1,8 @@
+<div id="site" class="index">
+<h1><%= idea.title %></h1>
+<a href= "/ideas/<%= idea._id %>/edit">Edit</a>
+<br>
+<form action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
+  <input type= "submit" value = "Delete">
+</form>
+</div>

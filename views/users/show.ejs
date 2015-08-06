@@ -1,0 +1,8 @@
+<div id="site" class="index">
+<h1><%= user.username %></h1>
+<a href= "/users/<%= user._id %>/edit">Edit</a>
+<br>
+<form action= '/users/<%= user._id%>/?_method=DELETE' method="post">
+  <input type= "submit" value = "Delete">
+</form>
+</div>

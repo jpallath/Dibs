@@ -1,0 +1,13 @@
+HELLO
+<dl id="site" class="index">
+<% idea.forEach(function(idea, i){ %>
+<a class="indexlink" href="/ideas/<%=idea._id%>">
+	<dt><%=idea.title  %></dt>
+	<dd><%=idea.content  %></dd>
+	<img src="<%=idea.image%>" alt="" />
+	<br>
+<form action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
+  <input type= "submit" value = "Delete">
+</a>
+<% }); %>
+</dl>

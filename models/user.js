@@ -8,34 +8,13 @@ var userSchema = Schema({
   password: {type: String, required: true}
 })
 
+userSchema.methods.generateHash = function(password){
+  return bcrypt.hashSync(password,bcrypt.genSaltSync(10));
+}
+
+userSchema.methods.validPassword = function(password){
+  return bcrypt.compareSync(password,this.password)
+}
+
 var User = mongoose.model("User", userSchema);
-
-  userSchema.pre('save', function(next) {
-    var user = this;
-    // only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err) return next(err);
-        // hash the password along with our new salt
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return next(err);
-            // override the cleartext password with the hashed one
-            user.password = hash;
-            next();
-        });
-    });
-});
-
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-  console.log("candidatePassword")
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
-    };
-    else{
-      res.redirect(301, "users/login")
-    })
-};
-
 module.exports = User;

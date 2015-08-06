@@ -14,29 +14,28 @@ var express      = require('express'),
 // Set
 server.set('views', "./views");
 server.set('view engine', 'ejs');
-//Uses
-// server.use(session({
-// 	secret:           "dibs",
-// 	resave:            false,
-// 	saveUninitialized: false
-// }));
+// Uses
+server.use(session({
+	secret:           "dibs",
+	resave:            false,
+	saveUninitialized: false
+}));
 
 server.use(bodyParser.urlencoded({extended:true}));
 server.use(express.static('./public'));
 server.use(methodOverride('_method'));
 server.use(morgan('short'));
 server.use(expressLayouts);
+
 // Routes and Controllers
 var userController = require('./controllers/users.js');
 server.use('/users', userController);
-// var articleController = require ('./controllers/articles.js');
-// server.use('/articles', articleController);
-//
-// var userController = require ('./controllers/users.js');
-// server.use('/users', userController);
+var ideaController = require('./controllers/ideas.js');
+server.use('/ideas', ideaController);
+var commentController = require('./controllers/comments.js');
+server.use('/comments', commentController);
 
-// this is the "controller" for the routes below here, should
-// we not hit one of the contollers above
+// this is the "controller" for the routes below here, should we not hit one of the contollers above
 server.use(function (req, res, next) {
 	res.locals.controller = "main";
 	next();
@@ -60,13 +59,8 @@ db.on('error', function(){
 });
 
 db.once('open', function(err){
-  console.log("Error was: ", err);
-  console.log("Database is set to stun");
+  console.log("Ra has opened the database!");
   server.listen(PORT, function(){
-    console.log("Server is set to stun")
+    console.log("Horus has switched on the server!")
   });
 });
-
-// server.listen(PORT, function(){
-//   console.log("BY THE LIGHT OF RA!")
-// })

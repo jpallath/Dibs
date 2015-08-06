@@ -1,8 +1,6 @@
 var express = require ('express'),
     router  = express.Router(),
     User    = require('../models/user.js');
-    bcrypt = require('bcrypt'),
-    SALT_WORK_FACTOR = 10;
 
 router.use(function (req, res, next) {
   res.locals.controller = 'users';
@@ -24,20 +22,35 @@ router.get('/', function(req, res){
 router.get('/login', function(req, res){
   res.render('users/login');
 })
-router.post('/login', function(req, res){
-  attempt = req.body.user;
-  console.log(attempt);
-  User.findOne({username: attempt.username}, function(err, found){
-    if (found && found.password == attempt.password){
-      console.log("true")
+
+router.post('/login', function(req,res){
+  var attempt = req.body.user;
+  User.findOne({username: attempt.username}, function (err, found){
+    if (found.validPassword(attempt.password)){
+      req.session.currentUser = found.username;
       res.redirect(301, "/users")
-    }
-    else {
+    } else {
       res.redirect(301, "/users/login")
     }
-
   })
 })
+// -------------------------
+// router.post('/login', function(req, res){
+//   attempt = req.body.user;
+//   console.log(attempt);
+//   User.findOne({username: attempt.username}, function(err, found){
+//     console.log (found)
+//     if (found && found.password == attempt.password){
+//       console.log("true")
+//       res.redirect(301, "/users")
+//     }
+//     else {
+//       res.redirect(301, "/users/login")
+//     }
+//
+//   })
+// })
+// ---------------------------
   // console.log(res.body.user);
       // req.session.currentUser = User.username;
       // console.log(User.schema.paths.username)
@@ -50,32 +63,30 @@ router.post('/login', function(req, res){
     //   res.redirect(301, "/users/login")
     // }
   // })
+
 //New
 router.get('/new', function(req,res){
-  console.log("users")
   res.render('users/new');
 });
 //Create
 router.post('/', function(req, res){
-  User.create(req.body.user, function (err, user) {
-    if(err) {
-      console.log(user);
-    } else {
-      res.redirect(301, '/users');
-    }
-  })
+  var newUser = new User();
+  newUser.password = newUser.generateHash(req.body.user.password);
+  newUser.username = req.body.user.username;
+  newUser.save()
+  res.redirect(301, "/users");
 })
 //Show
-// router.get('/:id', function(req, res){
-//   var mongoId = req.params.id;
-//   User.findOne({_id:mongoId}, function(err, foundUser){
-//     if (err){
-//       console.log("Whoops");
-//     } else {
-//       res.render('users/show',{user: foundUser})
-//     }
-//   })
-// });
+router.get('/:id', function(req, res){
+  var mongoId = req.params.id;
+  User.findOne({_id:mongoId}, function(err, foundUser){
+    if (err){
+      console.log("Whoops");
+    } else {
+      res.render('users/show',{user: foundUser})
+    }
+  })
+});
 //Delete
 router.delete('/:id', function(req, res){
   var mongoId = req.params.id;
@@ -84,27 +95,26 @@ router.delete('/:id', function(req, res){
   });
 });
 //Edit
-// router.get('/:id/edit', function(req, res){
-//   var mongoId = req.params.id;
-//   User.findOne({_id:mongoId}, function(err, foundUser){
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.render("users/edit", {user:foundUser});
-//     };
-//   });
-// })
+router.get('/:id/edit', function(req, res){
+  var mongoId = req.params.id;
+  User.findOne({_id:mongoId}, function(err, foundUser){
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users/edit", {user:foundUser});
+    };
+  });
+})
 //Update
-// router.patch('/:id', function(req, res){
-//   var mongoId = req.params.id;
-//   var updatedUser = req.body.user;
-//   User.update({_id:mongoId}, updatedUser, function(err, foundUser){
-//     if(err){
-//       console.log("woah");
-//     } else {
-//       res.redirect(301, '/users/' + mongoId)
-//     }
-//   })
-// })
+router.patch('/:id', function(req, res){
+  var mongoId = req.params.id;
+  var updatedUser = req.body.user;
+  User.update({_id:mongoId}, updatedUser, function(err, foundUser){
+    if(err){
+    } else {
+      res.redirect(301, '/users/' + mongoId)
+    }
+  })
+})
 //Export
 module.exports = router;
