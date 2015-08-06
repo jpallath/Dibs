@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
+    commentSchema  = require('module');
 
 var ideaSchema = Schema({
     title: {type: String, required: true},
@@ -7,6 +8,7 @@ var ideaSchema = Schema({
     content: String,
     tags: [String],
     image: String,
+    comments: [],
     passdown: {type: String, default: "idea"},
     created: {type: Date, default: Date.now}
 })

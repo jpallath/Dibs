@@ -1,1 +1,10 @@
-<h1>COMMENTS</h1>
+<dl id="site" class="index">
+<% comment.forEach(function(comment, i){ %>
+	<dt><%=comment.author  %></dt>
+	<dd><%=comment.content  %></dd>
+	<br>
+<form action= '/comments/<%= comment._id%>/?_method=DELETE' method="post">
+  <input type= "submit" value = "Delete">
+</a>
+<% }); %>
+</dl>

@@ -13,6 +13,7 @@ router.get('/', function(req, res){
     if (err) {
       console.log("CAN'T FIND USERS");
     } else {
+      console.log(req.session.currentUser);
       res.render('users',{user: usersArray});
     };
   });
@@ -28,7 +29,7 @@ router.post('/login', function(req,res){
   User.findOne({username: attempt.username}, function (err, found){
     if (found.validPassword(attempt.password)){
       req.session.currentUser = found.username;
-      res.redirect(301, "/users")
+      res.redirect(301, "/ideas")
     } else {
       res.redirect(301, "/users/login")
     }
@@ -66,6 +67,7 @@ router.post('/login', function(req,res){
 
 //New
 router.get('/new', function(req,res){
+  console.log("hi");
   res.render('users/new');
 });
 //Create

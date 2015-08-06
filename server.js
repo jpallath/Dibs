@@ -28,8 +28,11 @@ server.use(morgan('short'));
 server.use(expressLayouts);
 
 // Routes and Controllers
+
 var userController = require('./controllers/users.js');
 server.use('/users', userController);
+// var commentsOnIdeasController = require('./controllers/commentsOnIdeas.js');
+// server.use('ideas/:id/comments', commentsOnIdeasController);
 var ideaController = require('./controllers/ideas.js');
 server.use('/ideas', ideaController);
 var commentController = require('./controllers/comments.js');
@@ -41,9 +44,9 @@ server.use(function (req, res, next) {
 	next();
 })
 
-// server.get('/', function(req, res){
-//   res.render('welcome');
-// });
+server.get('/', function(req, res){
+  res.render('users/login');
+});
 
 //Catchall Routes
 server.use(function(req, res){

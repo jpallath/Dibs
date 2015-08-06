@@ -1,6 +1,7 @@
 var express = require ('express'),
     router  = express.Router(),
-    Idea    = require('../models/idea.js');
+    Idea    = require('../models/idea.js'),
+    Comment = require('../models/comment.js');
 
 router.use(function(req, res, next){
   res.locals.controller = 'ideas';
@@ -32,11 +33,25 @@ router.post('/',function(req,res){
 //Show
 router.get('/:id', function(req, res){
   var mongoId = req.params.id;
-  Idea.findOne({_id:mongoId}, function(err, foundIdea){
+  Idea.findOne({_id: mongoId}, function(err, foundIdea){
     if (err){
       console.log("Whoops");
     } else {
-      res.render('ideas/show',{idea: foundIdea})
+      req.session.currentParent = req.params.id;
+      req.session.currentParentType = "idea";
+
+      Comment.find({parent_id:mongoId}, function(err,foundComments){
+        if (err){
+        } else {
+          console.log( foundComments );
+          res.render('ideas/show', {
+            idea: foundIdea,
+            comments: foundComments
+          })
+        }
+      })
+
+      // res.render('ideas/show',{idea: foundIdea})
     }
   })
 });
@@ -67,7 +82,6 @@ router.patch('/:id', function(req, res){
   var updatedIdea = req.body.idea;
   Idea.update({_id:mongoId}, updatedIdea, function(err, foundIdea){
     if(err){
-      console.log("woah");
     } else {
       res.redirect(301, '/ideas/' + mongoId)
     }

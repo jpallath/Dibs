@@ -1,0 +1,7 @@
+<h1><%= idea.title %></h1>
+<p><%= idea.content %></p>
+<hr>
+<form id="site" class="index" action='/comments'method="post">
+<input type="text" name="comment[content]" >
+  <input type="submit" value="Submit" />
+</form>

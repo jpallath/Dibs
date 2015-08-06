@@ -1,8 +1,42 @@
 <div id="site" class="index">
-<h1><%= idea.title %></h1>
-<a href= "/ideas/<%= idea._id %>/edit">Edit</a>
-<br>
-<form action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
-  <input type= "submit" value = "Delete">
-</form>
+  <img src="<%= idea.image %>" alt="" />
+  <h1><%= idea.title %></h1>
+
+  <p>
+    <%= idea.content %>
+  </p>
+
+  <br>
+  <form action= '/ideas/<%= idea._id %>/edit' method="get">
+    <input type= "submit" value = "Edit">
+  </form>
+  <form action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
+    <input type= "submit" value = "Delete">
+  </form>
+
+  <hr>
+  <h3>Comments</h3>
+  <a href="/comments/new">Respond</a>
+
+    <% comments.forEach(function (comment, i) { %>
+      <p>
+        <%= comment.content %>
+
+        <ul>
+          <% comment.comments.forEach(function (subcomment, i) { %>
+            <li><%= subcomment.content %></li>
+          <% }) %>
+        <li>
+          <form action="/comments/<%= comment._id %>/comment" method="post">
+            <input type="text"
+                   name="content"
+                   placeholder="your reply...">
+            <input type="submit">
+          </form>
+        </li>
+        </ul>
+      </p>
+    <% }) %>
+    <hr>
+
 </div>
