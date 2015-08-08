@@ -4,8 +4,11 @@ var mongoose = require('mongoose'),
     SALT_WORK_FACTOR = 10;
 
 var userSchema = Schema({
-  username: {type: String, required: true, index: {unique: true}},
-  password: {type: String, required: true}
+  username:          {type: String, required: true, index: {unique: true}},
+  password:          {type: String, required: true},
+  ideaPoints:        {type: Number, default: 0},
+  commentPoints:     {type: Number, default: 0},
+  interactionPoints: {type: Number, default: 0}
 })
 
 userSchema.methods.generateHash = function(password){

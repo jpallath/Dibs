@@ -4,9 +4,11 @@ var mongoose = require('mongoose'),
 var commentSchema = new Schema();
 
 commentSchema.add({
-    author: String,
+    author: {type:String, required: true},
     content: String,
     parent_id: String,
+    upvotes: {type: Number, default: 0},
+    upvotedBy: [],
     edited: { type: Date, default: Date.now },
     comments: [ commentSchema ]
 })

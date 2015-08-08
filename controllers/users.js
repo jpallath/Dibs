@@ -7,6 +7,19 @@ router.use(function (req, res, next) {
   next();
 });
 
+// //To set the currentUser as nobody
+// router.use(function (req, res, next) {
+//   if (req.session.currentUser){
+//     var currentUser = req.session.currentUser;
+//     next();
+//     }
+//     else{
+//       currentUser = "";
+//       next();
+//       }
+//       console.log("Hey user",res.locals);
+//       });
+
 //Index (Maybe Log-In?), this is just an indevelopment page to make sure users are saving
 router.get('/', function(req, res){
   User.find({}, function(err, usersArray){
@@ -28,7 +41,9 @@ router.post('/login', function(req,res){
   var attempt = req.body.user;
   User.findOne({username: attempt.username}, function (err, found){
     if (found.validPassword(attempt.password)){
+      currentUser = found.username;
       req.session.currentUser = found.username;
+      console.log(req.session.currentUser);
       res.redirect(301, "/ideas")
     } else {
       res.redirect(301, "/users/login")

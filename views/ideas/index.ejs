@@ -1,14 +1,19 @@
-<a href="/ideas/new">Post A New Idea!</a>
-<hr>
-<dl id="site" class="index">
+<div class="overall">
 <% idea.forEach(function(idea, i){ %>
-<a class="indexlink" href="/ideas/<%=idea._id%>">
-	<dt><%=idea.title  %></dt>
-	<dd><%=idea.content  %></dd>
-	<img src="<%=idea.image%>" alt="" />
-	<br>
-<form action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
-  <input type= "submit" value = "Delete">
-</a>
-<% }); %>
-</dl>
+	<a href="/ideas/<%=idea._id%>"
+		style="text-decoration: none;">
+		<div class="child mdl-card mdl-shadow--2dp">
+			<div class="mdl-card__media">
+				<img src="<%= idea.image %>" width="100%" height="100%"  />
+			</div>
+			<div class="mdl-card__title">
+				<%= idea.title %>
+			</div>
+			<div class="mdl-card__supporting-text --border">
+				<a href="/ideas/<%=idea._id%>"></a>
+			</div>
+		</div>
+		<% }); %>
+	</a>
+</div>
+<br>

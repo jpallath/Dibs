@@ -8,13 +8,27 @@ router.use(function(req, res, next){
   next();
 })
 
+// router.use(function (req, res, next) {
+//   if (req.session.currentUser){
+//     currentUser = req.session.currentUser;
+//     next();
+//     } else{
+//       currentUser = "";
+//       }
+//       console.log("Hey idea",res.locals);
+//       next()
+//       });
+
 //Index  will just be all the posts written, this will be removed when the site is finalized
 
 router.get('/', function(req,res){
+  console.log(req.session.currentUser);
+  console.log("rendering index");
   Idea.find({}, function(err, ideasArray){
     if (err){
       console.log("Where are the ideas?")
     } else {
+      console.log("rendering....");
       res.render('ideas', {idea: ideasArray})
     }
   })

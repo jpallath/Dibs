@@ -45,7 +45,7 @@ server.use(function (req, res, next) {
 })
 
 server.get('/', function(req, res){
-  res.render('users/login');
+  res.redirect(301, 'ideas');
 });
 
 //Catchall Routes

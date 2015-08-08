@@ -1,0 +1,15 @@
+.overall{
+  display:flex;
+  flex-direction: row;
+  flex-flow: wrap;
+}
+
+.child{
+  background-color: purple;
+  color: white;
+  margin-top: .1%;
+  margin-right: .9%;
+  margin-bottom: .5%;
+  width: 22.5%;
+  min-width: 200px;
+}

@@ -4,11 +4,13 @@ var mongoose = require('mongoose'),
 
 var ideaSchema = Schema({
     title: {type: String, required: true},
-    author: String,
+    author: {type:String, required: true},
     content: String,
     tags: [String],
     image: String,
     comments: [],
+    upvotes: {type: Number, default: 0},
+    upvotedBy: [],
     passdown: {type: String, default: "idea"},
     created: {type: Date, default: Date.now}
 })
