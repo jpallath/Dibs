@@ -5,11 +5,39 @@
 }
 
 .child{
-  background-color: purple;
+  background-color: white;
   color: white;
   margin-top: .1%;
   margin-right: .9%;
   margin-bottom: .5%;
-  width: 22.5%;
+  margin-left: .5%;
+  /*width: 22.5%;*/
   min-width: 200px;
+  /*height: 100%;*/
+  position: relative;
+  float: left;
+  width:  300px;
+  height: 400px;
+  background-position: 50% 50%;
+  background-repeat:   no-repeat;
+  background-size:     cover;
+}
+
+form{
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+}
+
+.main-fab-button{
+  z-index: 10;
+  position: fixed;
+  top: 85%;
+  left: 90%;
+  margin-right: auto;
+}
+
+body{
+  background-color: #FFFFF0;
 }

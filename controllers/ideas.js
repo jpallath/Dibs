@@ -41,7 +41,12 @@ router.get('/new', function(req, res){
 });
 //Created
 router.post('/',function(req,res){
-  Idea.create(req.body.idea);
+  var newIdea = new Idea();
+  newIdea.title = req.body.idea.title;
+  newIdea.image = req.body.idea.image;
+  newIdea.content = req.body.content;
+  newIdea.author = req.session.currentUser;
+  newIdea.save();
   res.redirect(301, '/ideas');
 })
 //Show

@@ -1,4 +1,4 @@
-<form id="site" class="index" action='/ideas'method="post">
+<!-- <form id="site" class="index" action='/ideas'method="post">
   <label>Title:</label><br>
   <input type="text" name="idea[title]" placeholder="title"><br>
   <label>content:</label><br>
@@ -6,4 +6,20 @@
   <label>Image</label>
   <input type="text" name="idea[image]"><br>
   <input type="submit" value="Submit" />
+</form> -->
+<!-- Simple Textfield -->
+<form id="site" class="index" action='/ideas'method="post">
+  <div class="mdl-textfield mdl-js-textfield textfield-demo">
+    <input class="mdl-textfield__input" type="text" name="idea[title]"placeholder="thought">
+  </div>
+  <div class="mdl-textfield mdl-js-textfield textfield-demo"><input class="mdl-textfield__input" type="text" name="idea[image]" placeholder="link a picture">
+  </div>
+  <!-- Floating Multiline Textfield -->
+  <div class="mdl-textfield mdl-js-textfield textfield-demo">
+    <textarea class="mdl-textfield__input" type="text" rows= "8" name="idea[content]" ></textarea>
+    <label class="mdl-textfield__label">explain...</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield textfield-demo">
+<input type="submit" value="Bubble!">
+</div>
 </form>

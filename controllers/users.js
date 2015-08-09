@@ -91,7 +91,7 @@ router.post('/', function(req, res){
   newUser.password = newUser.generateHash(req.body.user.password);
   newUser.username = req.body.user.username;
   newUser.save()
-  res.redirect(301, "/users");
+  res.redirect(301, "users/login");
 })
 //Show
 router.get('/:id', function(req, res){
