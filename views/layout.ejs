@@ -61,14 +61,16 @@
            style="background-color: orange;">
         <span class="mdl-layout-title">DiBs</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">
+          <span class="mdl-navigation__link" href="">
             <% if (typeof currentUser === 'undefined'){%>
-              HI
+              <a style="color: white;"href="/users/login">Login</a> or
+              <a style="color: white;"href="/users/new"> Sign Up!</a>
               <% } else { %>
               <%= currentUser %>
               <% } %>
 
           </a>
+          </span>
           <a class="mdl-navigation__link" href="">Immersion Pts: </a>
           <a class="mdl-navigation__link" href="">Idea Pts: </a>
           <a class="mdl-navigation__link" href="">Comment Pts: </a>
