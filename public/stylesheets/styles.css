@@ -1,3 +1,4 @@
+
 .overall{
   display:flex;
   flex-direction: row;
@@ -27,19 +28,28 @@
   width: 95%;
   margin: auto;
   border: 2px solid purple;
-  background-color: #BA55D3
+  background-color: lavender;
 }
-
+.bigger-type{
+  margin: 0;
+}
+.smaller-type{
+  margin-left: 10%;
+}
 .zero{
   float: left;
   margin-right: .4%;
 }
 
-form:not(.zero){
+form:not(.zero & .cleared){
   width: 400px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 5%;
+}
+
+.total-idea{
+  margin-bottom: 1%;
 }
 
 .main-fab-button{
@@ -52,4 +62,17 @@ form:not(.zero){
 
 body{
   background-color: #FFFFF0;
+}
+
+.reply{
+  background-color: lavender;
+  margin: auto;
+  border: 1px solid purple;
+  height: auto;
+}
+
+.responses{
+  border: 2px solid purple;
+  width: 95%;
+  margin: auto;
 }

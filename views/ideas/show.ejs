@@ -1,5 +1,7 @@
 <div id="site" class="index">
-  <h1><%= idea.title %></h1>
+  <div class="">
+  <h1 class="bigger-type"><%= idea.title %><p class"smaller-type"> posted by <%=idea.author%></p></h1>
+  </div>
   <div class="total-idea">
     <p>
       <%= idea.content %>
@@ -15,26 +17,28 @@
 
   <hr>
   <h3>Comments</h3>
-
     <% comments.forEach(function (comment, i) { %>
-      <p>
-        <%= comment.content %>
-
-        <ul>
-          <% comment.comments.forEach(function (subcomment, i) { %>
-            <li><%= subcomment.content %></li>
-          <% }) %>
-        <li>
-          <form action="/comments/<%= comment._id %>/comment" method="post">
-            <input type="text"
-                   name="content"
-                   placeholder="your reply...">
-            <input type="submit">
-          </form>
-        </li>
-        </ul>
-      </p>
-    <% }) %>
-    <hr>
-
+      <div class="responses">
+      <div class="reply">
+        <p>
+          <%= comment.content %> --posted by <%= comment.author %>
+        </p>
+      </div>
+      <ul>
+        <% comment.comments.forEach(function (subcomment, i) { %>
+          <li><%= subcomment.content %></li>
+        <% }) %>
+      <li>
+        <form class"cleared" action="/comments/<%= comment._id %>/comment" method="post">
+          <input type="text"
+                 name="content"
+                 placeholder="your reply...">
+          <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                 type="submit"
+                 value="respond">
+        </form>
+      </li>
+      </ul>
+    </div>
 </div>
+  <% }) %>

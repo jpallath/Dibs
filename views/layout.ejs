@@ -18,7 +18,10 @@
         <div class="mdl-layout__header-row">
           <!-- Title -->
           <a href="/ideas"
-          style="color: white; text-decoration: none;"><span class="mdl-layout-title">Project DiBs</span></a>
+          style="color: white; text-decoration: none;"><span id="title" class="mdl-layout-title">Project DiBs</span>
+          <div class="mdl-tooltip" for="title">
+          Home
+          </div></a>
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                       mdl-textfield--floating-label mdl-textfield--align-right">
@@ -63,7 +66,8 @@
         <nav class="mdl-navigation">
           <span class="mdl-navigation__link" href="">
             <% if (typeof currentUser === 'undefined'){%>
-              <a style="color: white;"href="/users/login">Login</a> or
+              <a style="color: white;"href="/users/login">Login</a>
+              ////
               <a style="color: white;"href="/users/new"> Sign Up!</a>
               <% } else { %>
               <%= currentUser %>
