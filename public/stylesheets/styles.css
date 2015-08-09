@@ -23,7 +23,14 @@
   background-size:     cover;
 }
 
-form{
+.total-idea{
+  width: 95%;
+  margin: auto;
+  border: 2px solid purple;
+  background-color: #BA55D3
+}
+
+form:not(.zero){
   width: 400px;
   margin-right: auto;
   margin-left: auto;
