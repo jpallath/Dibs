@@ -45,7 +45,7 @@ router.post('/',function(req,res){
   var newIdea = new Idea();
   newIdea.title = req.body.idea.title;
   newIdea.image = req.body.idea.image;
-  newIdea.content = req.body.content;
+  newIdea.content = req.body.idea.content;
   newIdea.author = req.session.currentUser;
   newIdea.save();
   res.redirect(301, '/ideas');
@@ -59,7 +59,7 @@ router.get('/:id', function(req, res){
     } else {
       req.session.currentParent = req.params.id;
       req.session.currentParentType = "idea";
-
+      console.log(foundIdea)
       Comment.find({parent_id:mongoId}, function(err,foundComments){
         if (err){
         } else {
