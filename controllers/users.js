@@ -1,5 +1,6 @@
 var express = require ('express'),
     router  = express.Router(),
+    ejs     = require('ejs')
     User    = require('../models/user.js');
 
 router.use(function (req, res, next) {
@@ -61,7 +62,9 @@ router.post('/logout', function(req,res){
   // cannot access session here
 })
 console.log(req.session);
-  res.redirect(301, "/ideas")
+console.log('chi');
+ejs.clearCache;
+  res.redirect(301, "/users/login")
 })
 
 // -------------------------
