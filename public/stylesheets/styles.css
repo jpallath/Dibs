@@ -41,7 +41,7 @@
   margin-right: .4%;
 }
 
-form:not(.zero & .cleared){
+form:not(.zero){
   width: 400px;
   margin-right: auto;
   margin-left: auto;
