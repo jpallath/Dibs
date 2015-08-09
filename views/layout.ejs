@@ -46,6 +46,14 @@
                 <% } %>
 
             </a>
+            <a style="text-decoration: none;"
+            class="mdl-navigation__link" href="">
+              <% if (typeof currentUser === 'undefined'){%>
+                <% } else { %>
+                <a style="text-decoration:none;" href="/users/logout">Logout</a>
+                <% } %>
+
+            </a>
           </nav>
         </div>
       </header>

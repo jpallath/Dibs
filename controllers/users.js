@@ -50,6 +50,20 @@ router.post('/login', function(req,res){
     }
   })
 })
+
+//logout middleware?
+router.get('/logout', function(req, res){
+  res.render('users/logout');
+})
+
+router.post('/logout', function(req,res){
+  req.session.destroy(function(err) {
+  // cannot access session here
+})
+console.log(req.session);
+  res.redirect(301, "/ideas")
+})
+
 // -------------------------
 // router.post('/login', function(req, res){
 //   attempt = req.body.user;

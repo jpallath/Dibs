@@ -23,6 +23,7 @@ router.use(function(req, res, next){
 
 router.get('/', function(req,res){
   console.log(req.session.currentUser);
+  console.log(typeof req.session.currentUser);
   console.log("rendering index");
   Idea.find({}, function(err, ideasArray){
     if (err){
