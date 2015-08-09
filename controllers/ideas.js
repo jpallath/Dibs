@@ -22,14 +22,14 @@ router.use(function(req, res, next){
 //Index  will just be all the posts written, this will be removed when the site is finalized
 
 router.get('/', function(req,res){
-  console.log(req.session.currentUser);
-  console.log(typeof req.session.currentUser);
-  console.log("rendering index");
+  // console.log(req.session.currentUser);
+  // console.log(typeof req.session.currentUser);
+  // console.log("rendering index");
   Idea.find({}, function(err, ideasArray){
     if (err){
       console.log("Where are the ideas?")
     } else {
-      console.log("rendering....");
+      // console.log("rendering....");
       res.render('ideas', {idea: ideasArray})
     }
   })
@@ -37,7 +37,7 @@ router.get('/', function(req,res){
 
 //New Idea
 router.get('/new', function(req, res){
-  console.log("hi")
+  // console.log("hi")
   res.render('ideas/new');
 });
 //Created
@@ -55,15 +55,15 @@ router.get('/:id', function(req, res){
   var mongoId = req.params.id;
   Idea.findOne({_id: mongoId}, function(err, foundIdea){
     if (err){
-      console.log("Whoops");
+      // console.log("Whoops");
     } else {
       req.session.currentParent = req.params.id;
       req.session.currentParentType = "idea";
-      console.log(foundIdea)
+      // console.log(foundIdea)
       Comment.find({parent_id:mongoId}, function(err,foundComments){
         if (err){
         } else {
-          console.log( foundComments );
+          // console.log( foundComments );
           res.render('ideas/show', {
             idea: foundIdea,
             comments: foundComments
