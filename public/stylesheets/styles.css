@@ -30,6 +30,11 @@
   background-color: #BA55D3
 }
 
+.zero{
+  float: left;
+  margin-right: .4%;
+}
+
 form:not(.zero){
   width: 400px;
   margin-right: auto;

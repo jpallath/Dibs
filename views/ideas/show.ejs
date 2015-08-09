@@ -4,16 +4,13 @@
     <p>
       <%= idea.content %>
     </p>
-    <br>
-    <a href='/ideas/<%= idea._id %>/edit' method="get"><button type="button" name="button">Edit</button></a>
-    <div class="button-gatherer">
-      </form>
-      <form class="zero"action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
-        <input type= "submit" value = "Delete">
-      </form>
-      <a href="/comments/new">Respond</a>
-    </div>
-
+  </div>
+  <div class="button-gatherer">
+      <a class="zero" href='/ideas/<%= idea._id %>/edit' method="get"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" name="button">Edit</button></a>
+    <form class="zero"action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
+      <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type= "submit" value = "Delete">
+    </form>
+    <a href="/comments/new"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Respond</button></a>
   </div>
 
   <hr>
