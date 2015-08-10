@@ -28,8 +28,8 @@ server.use(morgan('short'));
 server.use(expressLayouts);
 
 server.use(function (req, res, next) {
-	console.log("REQ DAT BODY", req.body);
-	console.log("REQ DAT SESSION", req.session);
+// console.log("REQ DAT BODY", req.body);
+// console.log("REQ DAT SESSION", req.session);`
 
 	if (req.session.currentUser) {
 		res.locals.currentUser = req.session.currentUser;
