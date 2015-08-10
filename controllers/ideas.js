@@ -21,19 +21,15 @@ router.use(function(req, res, next){
 
 //Index  will just be all the posts written, this will be removed when the site is finalized
 
-router.get('/', function(req,res){
-  // console.log(req.session.currentUser);
-  // console.log(typeof req.session.currentUser);
-  // console.log("rendering index");
-  Idea.find({}, function(err, ideasArray){
+router.get('/', function(req, res){
+  Idea.find({}).sort({upvotes:-1}).exec(function(err,ideasArray){
     if (err){
-      console.log("Where are the ideas?")
+      console.log("where are the ideas")
     } else {
-      // console.log("rendering....");
       res.render('ideas', {idea: ideasArray})
     }
   })
-})
+});
 
 //New Idea
 router.get('/new', function(req, res){

@@ -59,6 +59,21 @@ router.post('/',function(req,res){
         if(err){
 
         } else{
+          Idea.findOne({_id:newComment.parent_id},function(err, updatedIdea){
+            if (err){
+              console.log('its not coming');
+            } else{
+              updatedIdea.upvotes = updatedIdea.upvotes + 1;
+              updatedIdea.save(function(err, gotit){
+                if (err){
+                  console.log(err);
+                } else {
+                  console.log("SUCCESS?");
+                }
+              })
+            }
+          });
+          // console.log(updatedIdea);
           res.render('ideas/show',{
             idea: foundIdea,
             comments: foundComments
