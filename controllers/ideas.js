@@ -1,6 +1,7 @@
 var express = require ('express'),
     router  = express.Router(),
     Idea    = require('../models/idea.js'),
+    Tag     = require("../models/tag.js"),
     Comment = require('../models/comment.js');
 
 router.use(function(req, res, next){
@@ -43,6 +44,12 @@ router.post('/',function(req,res){
   newIdea.image = req.body.idea.image;
   newIdea.content = req.body.idea.content;
   newIdea.author = req.session.currentUser;
+  newIdea.tags = req.body.idea.tags.split(', ');
+  for (var i = 0; i < newIdea.tags.length; i++) {
+    var newTag = new Tag();
+    newTag.tag = newIdea.tags[i];
+    newTag.save();
+  }
   newIdea.save();
   res.redirect(301, '/ideas');
 })
@@ -55,7 +62,7 @@ router.get('/:id', function(req, res){
     } else {
       req.session.currentParent = req.params.id;
       req.session.currentParentType = "idea";
-      // console.log(foundIdea)
+      console.log(foundIdea)
       Comment.find({parent_id:mongoId}, function(err,foundComments){
         if (err){
         } else {

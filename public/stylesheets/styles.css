@@ -91,3 +91,10 @@ a { color: inherit; }
 .nav-logout-button:hover {
   cursor: pointer;
 }
+
+.score{
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  color: orange;
+}

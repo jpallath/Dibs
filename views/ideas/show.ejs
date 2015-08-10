@@ -14,6 +14,10 @@
     </form>
     <a href="/comments/new/<%=idea._id%>"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Respond</button></a>
   </div>
+  <br>
+  <% idea.tags.forEach(function (tag,i){ %>
+    <a href="/tags/<%=idea.tags[i]%>"><%=idea.tags[i]%></a>
+    <% }) %>
 
   <hr>
   <h3>Comments</h3>
