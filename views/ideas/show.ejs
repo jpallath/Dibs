@@ -30,12 +30,14 @@
         <% }) %>
       <li>
         <form class"cleared" action="/comments/<%= comment._id %>/comment" method="post">
-          <input type="text"
-                 name="content"
-                 placeholder="your reply...">
+            <textarea style="width: 90%;
+            background-color: lavender;" class="mdl-textfield__input" rows="8" name="content"></textarea>
+            <label class="mdl-textfield__label">What do you think?</label>
           <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
                  type="submit"
                  value="respond">
+          <div class="mdl-textfield mdl-js-textfield textfield-demo">
+          </div>
         </form>
       </li>
       </ul>

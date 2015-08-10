@@ -1,6 +1,7 @@
 var express = require ('express'),
     router  = express.Router(),
-    ejs     = require('ejs')
+    ejs     = require('ejs'),
+    Idea    = require('../models/idea.js'),
     User    = require('../models/user.js');
 
 router.use(function (req, res, next) {
@@ -117,7 +118,12 @@ router.get('/:id', function(req, res){
     if (err){
       console.log("Whoops");
     } else {
-      res.render('users/show',{user: foundUser})
+      Idea.find({author:mongoId}, function(err, foundIdeas){
+        res.render('users/show',{
+          user: foundUser,
+          idea: foundIdeas})
+      })
+
     }
   })
 });
