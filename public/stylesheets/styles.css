@@ -77,4 +77,17 @@ body{
   margin: auto;
 }
 
-a { color: inherit; } 
+a { color: inherit; }
+
+.nav-logout-button {
+  background: inherit;
+  color: inherit;
+  font: inherit;
+  border: 0;
+  font-size: 14px;
+  font-family: Helvetica, sans-serif;
+}
+
+.nav-logout-button:hover {
+  cursor: pointer;
+}

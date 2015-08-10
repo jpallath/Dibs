@@ -2,6 +2,8 @@
 <p><%= idea.content %></p>
 <hr>
 <form id="site" class="form-index" action='/comments'method="post">
-<input type="text" name="comment[content]" >
+<textarea style="width: 90%; margin: auto; background-color: lavender;"
+class="mdl-textfield_input" rows="8" name="comment[content]"></textarea>
+
   <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" value="Submit" />
 </form>
