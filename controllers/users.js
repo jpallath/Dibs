@@ -113,7 +113,7 @@ router.post('/', function(req, res){
 //Show
 router.get('/:id', function(req, res){
   var mongoId = req.params.id;
-  User.findOne({_id:mongoId}, function(err, foundUser){
+  User.findOne({username:mongoId}, function(err, foundUser){
     if (err){
       console.log("Whoops");
     } else {

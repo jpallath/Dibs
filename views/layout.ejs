@@ -45,7 +45,7 @@
                 <a style="text-decoration: none; margin-right: 5px;"href="/users/login">Login ^o^</a> or
                 <a style="text-decoration: none; margin-left: 5px;"href="/users/new"> Sign Up! \_(ツ)_/¯</a>
                 <% } else { %>
-                <%= currentUser %>
+                <a style="text-decoration: none;"href="users/<%= currentUser %>"><%= currentUser %></a>
                 <% } %>
 
             </a>
@@ -70,7 +70,7 @@
               ////
               <a style="color: white;"href="/users/new"> Sign Up!</a>
               <% } else { %>
-              <%= currentUser %>
+              <a style="text-decoration: none;"href="users/<%= currentUser %>"><%= currentUser %></a>
               <% } %>
 
           </a>

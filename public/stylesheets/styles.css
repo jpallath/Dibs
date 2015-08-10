@@ -76,3 +76,5 @@ body{
   width: 95%;
   margin: auto;
 }
+
+a { color: inherit; } 

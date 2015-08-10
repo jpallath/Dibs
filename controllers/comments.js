@@ -30,8 +30,10 @@ router.get('/', function(req,res){
   // })
 
 //New Comment
-router.get('/new', function(req, res){
-  Idea.findOne({_id:req.session.currentParent}, function(err, foundIdea){
+router.get('/new/:id', function(req, res){
+  console.log(req.params)
+  console.log('X');
+  Idea.findOne({_id:req.params.id}, function(err, foundIdea){
     if (err){
 
     } else {
@@ -41,9 +43,7 @@ router.get('/new', function(req, res){
 });
 //Created
 router.post('/',function(req,res){
-  // console.log(req.body.comment.content);
-  // console.log("FUCK");
-  // console.log(req.body);
+  var mongoId = req.params.id;
   var newComment = new Comment();
   newComment.content = req.body.comment.content;
   // console.log('got here');
@@ -52,7 +52,22 @@ router.post('/',function(req,res){
   newComment.author = req.session.currentUser;
   // console.log(newComment)
   newComment.save();
-  res.redirect(301, 'comments');
+  Idea.findOne({_id:newComment.parent_id}, function(err, foundIdea){
+    if (err){
+    } else {
+      Comment.find({parent_id:newComment.parent_id}, function(err,foundComments){
+        if(err){
+
+        } else{
+          res.render('ideas/show',{
+            idea: foundIdea,
+            comments: foundComments
+          })
+        }
+      })
+    }
+  })
+  // res.redirect(301, 'comments');
   // res.redirect(301, '/comments');
 })
 //Show

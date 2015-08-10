@@ -12,7 +12,7 @@
     <form class="zero"action= '/ideas/<%= idea._id%>/?_method=DELETE' method="post">
       <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type= "submit" value = "Delete">
     </form>
-    <a href="/comments/new"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Respond</button></a>
+    <a href="/comments/new/<%=idea._id%>"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Respond</button></a>
   </div>
 
   <hr>
@@ -40,5 +40,5 @@
       </li>
       </ul>
     </div>
-</div>
   <% }) %>
+    </div>
